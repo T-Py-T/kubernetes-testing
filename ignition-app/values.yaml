@@ -1,4 +1,5 @@
 replicaCount: 3
+fullnameOverride: "ignition-app"
 
 ignition:
   image:
