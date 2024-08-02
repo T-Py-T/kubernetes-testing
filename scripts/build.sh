@@ -2,6 +2,7 @@
 
 # Exit immediately if a command exits with a non-zero status
 set -e
+# set -x  # Used for verbose output
 
 # Define variables
 # Define variables
@@ -9,7 +10,7 @@ RELEASE_NAME="my-ignition-app"
 CHART_NAME="ignition-app"
 NAMESPACE="ignition-namespace"
 VALUES_FILE="charts/$CHART_NAME/values.yaml"
-CHART_DIR="charts/$CHART_NAME/Chart.yaml"
+CHART_DIR="$(pwd)/charts/$CHART_NAME"
 REPO_URL="https://github.com/T-Py-T/kubernetes-testing/"  # Update with your Helm repo URL
 REPO_DIR="docs"
 
@@ -40,9 +41,9 @@ echo "Updating Helm repo index..."
 helm repo index $REPO_DIR --url $REPO_URL
 
 # Optional: Push changes to a GitHub repository
-echo "Pushing changes to GitHub..."
-git add $CHART_DIR/Chart.yaml $REPO_DIR
-git commit -m "Bump version to $NEW_VERSION"
-git push origin main
+#echo "Pushing changes to GitHub..."
+#git add $CHART_DIR/Chart.yaml $REPO_DIR
+#git commit -m "Bump version to $NEW_VERSION"
+#git push origin main
 
 echo "Build completed successfully."
