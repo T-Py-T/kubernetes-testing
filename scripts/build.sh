@@ -10,7 +10,7 @@ CHART_NAME="ignition-app"
 NAMESPACE="ignition-namespace"
 VALUES_FILE="charts/$CHART_NAME/values.yaml"
 CHART_DIR="charts/$CHART_NAME/Chart.yaml"
-REPO_URL="https://<username>.github.io/my-helm-repo"  # Update with your Helm repo URL
+REPO_URL="https://github.com/T-Py-T/kubernetes-testing/"  # Update with your Helm repo URL
 REPO_DIR="docs"
 
 # Extract the current chart version from Chart.yaml
