@@ -19,6 +19,9 @@ Thumbs.db
 # Ignore Vim swap files
 *.swp
 
+#Ignore added helm name space
+ignition-namespace/
+
 # Ignore Emacs temporary files
 *~
 
