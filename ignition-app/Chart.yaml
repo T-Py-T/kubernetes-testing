@@ -1,4 +1,0 @@
-apiVersion: v2
-name: ignition-app
-description: A Helm chart for deploying Inductive Automation Ignition with PostgreSQL
-version: 0.1.0
