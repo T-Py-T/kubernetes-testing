@@ -29,7 +29,7 @@ NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 echo "New version: $NEW_VERSION"
 
 # Update Chart.yaml with the new version
-sed -i "s/^version: .*/version: $NEW_VERSION/" $CHART_DIR/Chart.yaml
+sed -i "s/^version: .*/version: $NEW_VERSION/" $CHART_DIR
 
 # Package the Helm chart with the new version
 echo "Packaging Helm chart..."
