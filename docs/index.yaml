@@ -1,0 +1,13 @@
+apiVersion: v2
+entries:
+  ignition-app:
+    - name: ignition-app
+      version: 0.1.0
+      description: A Helm chart for deploying the ignition-app
+      urls:
+        - https://github.com/T-Py-T/kubernetes-testing/docs/ignition-app-0.1.0.tgz
+      digest: sha256:abcdef1234567890
+      created: 2022-01-01T00:00:00Z
+      maintainers:
+        - name: John Doe
+          email: john.doe@example.com

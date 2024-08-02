@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ignition-app.fullname" . }}-ignition
+  labels:
+    {{- include "ignition-app.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.ignition.port }}
+      protocol: TCP
+  selector:
+    app: {{ include "ignition-app.name" . }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ignition-app.fullname" . }}-postgresql
+  labels:
+    {{- include "ignition-app.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.postgresql.port }}
+      protocol: TCP
+  selector:
+    app: {{ include "ignition-app.name" . }}

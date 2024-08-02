@@ -1,21 +1,16 @@
 # Ignore Helm package files
 *.tgz
 
-# Ignore local Helm repository index
-index.yaml
-
 # Ignore configuration files
 *.lock
 *.bak
 
 # Ignore directories
 chartmuseum/
-charts/
 
 # Ignore specific Helm directories
 tmp/
 cache/
-charts/
 
 # Ignore system files
 .DS_Store
