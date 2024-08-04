@@ -1,14 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "ignition-app.fullname" . }}-ignition
+  name: {{ include "ignition-app.fullname" . }}
   labels:
     {{- include "ignition-app.labels" . | nindent 4 }}
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
-    - port: {{ .Values.ignition.port }}
-      protocol: TCP
+    - port: {{ .Values.ignition.service.port }}
+      targetPort: {{ .Values.ignition.port }}
+      nodePort: {{ .Values.ignition.service.nodePort }}
   selector:
     app: {{ include "ignition-app.name" . }}
 
@@ -17,13 +18,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "ignition-app.fullname" . }}-postgresql
+  name: {{ include "postgresql.fullname" . }}
   labels:
-    {{- include "ignition-app.labels" . | nindent 4 }}
+    {{- include "postgresql.labels" . | nindent 4 }}
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
-    - port: {{ .Values.postgresql.port }}
-      protocol: TCP
+    - port: {{ .Values.postgresql.service.port }}
+      targetPort: {{ .Values.postgresql.port }}
+      nodePort: {{ .Values.postgresql.service.nodePort }}
   selector:
-    app: {{ include "ignition-app.name" . }}
+    app: {{ include "postgresql.name" . }}
