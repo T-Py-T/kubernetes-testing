@@ -5,6 +5,7 @@ set -e
 # set -x # Gives a verbose output to the cli
 
 # Define variables
+NAMESPACE="ignition-namespace"
 RELEASE_NAME="ignition-app"
 CHART_NAME="ignition-app"
 NAMESPACE="ignition-namespace"
@@ -21,7 +22,7 @@ if helm status $RELEASE_NAME -n $NAMESPACE > /dev/null 2>&1; then
 else
   # Install a new release
   echo "Installing new release $RELEASE_NAME in namespace $NAMESPACE..."
-  helm install $RELEASE_NAME $CHART_FILE --namespace $NAMESPACE --values $VALUES_FILE
+  helm install $RELEASE_NAME $CHART_FILE --namespace $NAMESPACE  --create-namespace --values $VALUES_FILE
 fi
 
 echo "Deployment completed successfully."

@@ -1,7 +1,12 @@
 replicaCount: 3
 fullnameOverride: "ignition-app"
+namespace: ignition-namespace
 
 ignition:
+  labels:
+    app: ignition
+  tier: frontend
+  replicaCount: 3
   service:
     port: 8088
     nodePort: 38088
@@ -22,6 +27,10 @@ ignition:
     TZ: "America/Edmonton"
 
 postgresql:
+  labels:
+    app: db
+  tier: backend
+  replicaCount: 3
   service:
     port: 5432
     nodePort: 35432
