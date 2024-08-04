@@ -26,26 +26,33 @@ postgresql:
     port: 5432
     nodePort: 35432
   port: 5432
-  image: postgres:latest
+  image:
+    repository: postgres
+    tag: latest
+    pullPolicy: IfNotPresent
   env:
     POSTGRES_DB: ignitiondb
     POSTGRES_USER: ignitionuser
     POSTGRES_PASSWORD: ignitionpass
+  resources:
+    limits:
+      memory: "256Mi"
+      cpu: "500m"
 
-ingress:
-  enabled: true
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            serviceName: ignition
-            servicePort: 8088
-        - path: /db
-          pathType: Prefix
-          backend:
-            serviceName: postgresql
-            servicePort: 5432
-  tls: []
+# ingress:
+#   enabled: true
+#   annotations: {}
+#   hosts:
+#     - host: chart-example.local
+#       paths:
+#         - path: /
+#           pathType: Prefix
+#           backend:
+#             serviceName: ignition
+#             servicePort: 8088
+#         - path: /db
+#           pathType: Prefix
+#           backend:
+#             serviceName: postgresql
+#             servicePort: 5432
+#   tls: []
