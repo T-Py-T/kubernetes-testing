@@ -24,7 +24,7 @@ ignition:
 postgresql:
   service:
     port: 5432
-    nodePort: 30082
+    nodePort: 35432
   port: 5432
   image: postgres:latest
   env:

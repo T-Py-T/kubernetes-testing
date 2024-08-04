@@ -12,9 +12,7 @@ spec:
       nodePort: {{ .Values.ignition.service.nodePort }}
   selector:
     app: {{ include "ignition-app.name" . }}
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
