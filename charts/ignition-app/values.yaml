@@ -9,7 +9,7 @@ ignition:
   replicaCount: 3
   service:
     port: 8088
-    nodePort: 38088
+    nodePort: 30088
   port: 8088
   image:
     repository: inductiveautomation/ignition
@@ -33,7 +33,7 @@ postgresql:
   replicaCount: 3
   service:
     port: 5432
-    nodePort: 35432
+    nodePort: 30432
   port: 5432
   image:
     repository: postgres
