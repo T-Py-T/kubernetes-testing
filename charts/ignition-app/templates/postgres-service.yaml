@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "postgresql.fullname" . }}
+  name: postgresql
+  namespace: ignition-namespace
   labels:
-    {{- include "postgresql.labels" . | nindent 4 }}
+    app: postgresql
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-    - name: postgres
-      port: 5432
+    - port: 5432
       targetPort: 5432
-      nodePort: 30432
+      protocol: TCP
+      name: postgres
   selector:
-    app: {{ include "postgresql.name" . }}
+    app: postgresql

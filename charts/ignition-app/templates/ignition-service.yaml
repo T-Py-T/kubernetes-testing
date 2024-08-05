@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "ignition-app.fullname" . }}
+  name: ignition-app
+  namespace: ignition-namespace
   labels:
-    {{- include "ignition-app.labels" . | nindent 4 }}
+    app: ignition-app
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-    - name: ignition
-      port: {{ .Values.ignition.service.port }}
-      targetPort: {{ .Values.ignition.port }}
-      nodePort: {{ .Values.ignition.service.nodePort }}
+    - port: 8088
+      targetPort: 8088
+      protocol: TCP
+      name: http
   selector:
-    app: {{ include "ignition-app.name" . }}
+    app: ignition-app

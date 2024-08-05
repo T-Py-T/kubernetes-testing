@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Exit immediately if a command exits with a non-zero status
 set -e
 
@@ -29,23 +27,18 @@ delete_resources() {
   echo "Checking for remaining $resource_type in namespace: $NAMESPACE..."
   for resource in $(microk8s kubectl get $resource_type -n $NAMESPACE -o name); do
     if echo $resource | grep -q $RELEASE_NAME; then
-      microk8s kubectl delete $resource -n $NAMESPACE
-      echo "Deleted $resource."
+      microk8s kubectl delete $resource -n $NAMESPACE || true
     fi
   done
 }
 
-# Check for remaining resources
-delete_resources "pods"
-delete_resources "services"
-delete_resources "configmaps"
-delete_resources "secrets"
-delete_resources "deployments"
-delete_resources "statefulsets"
-delete_resources "daemonsets"
-delete_resources "jobs"
-delete_resources "replicasets"
-delete_resources "persistentvolumeclaims"
-delete_resources "ingresses"
+# Delete remaining resources
+delete_resources pods
+delete_resources services
+delete_resources deployments
+delete_resources statefulsets
+delete_resources daemonsets
+delete_resources jobs
+delete_resources cronjobs
 
-echo "Undeployment process completed."
+echo "Cleanup completed."

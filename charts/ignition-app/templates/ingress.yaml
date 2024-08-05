@@ -1,38 +1,30 @@
-# {{- if .Values.ingress.enabled -}}
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: {{ include "ignition-app.fullname" . }}
-#   labels:
-#     {{- include "ignition-app.labels" . | nindent 4 }}
-#   {{- with .Values.ingress.annotations }}
-#   annotations:
-#     {{- toYaml . | nindent 4 }}
-#   {{- end }}
-# spec:
-#   {{- if .Values.ingress.tls }}
-#   tls:
-#     {{- range .Values.ingress.tls }}
-#     - hosts:
-#         {{- range .hosts }}
-#         - {{ . }}
-#         {{- end }}
-#       secretName: {{ .secretName }}
-#     {{- end }}
-#   {{- end }}
-#   rules:
-#     {{- range .Values.ingress.hosts }}
-#     - host: {{ .host }}
-#       http:
-#         paths:
-#           {{- range .paths }}
-#           - path: {{ .path }}
-#             pathType: {{ .pathType | default "ImplementationSpecific" }}
-#             backend:
-#               service:
-#                 name: {{ include "ignition-app.fullname" . }}-{{ .backend.serviceName }}
-#                 port:
-#                   number: {{ .backend.servicePort }}
-#           {{- end }}
-#     {{- end }}
-# {{- end }}
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ignition-app-ingress
+  namespace: ignition-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: ignition.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ignition-app
+                port:
+                  number: 8088
+    - host: postgres.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: postgresql
+                port:
+                  number: 5432
