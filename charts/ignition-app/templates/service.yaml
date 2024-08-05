@@ -7,7 +7,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: {{ .Values.ignition.service.port }}
+    - name: ignition
+      port: {{ .Values.ignition.service.port }}
       targetPort: {{ .Values.ignition.port }}
       nodePort: {{ .Values.ignition.service.nodePort }}
   selector:
@@ -22,7 +23,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: {{ .Values.postgresql.service.port }}
+    - name: postgres
+      port: {{ .Values.postgresql.service.port }}
       targetPort: {{ .Values.postgresql.port }}
       nodePort: {{ .Values.postgresql.service.nodePort }}
   selector:
