@@ -8,9 +8,8 @@ spec:
   type: NodePort
   ports:
     - port: {{ .Values.ignition.service.port }}
+      targetPort: {{ .Values.ignition.port }}
       nodePort: {{ .Values.ignition.service.nodePort }}
-      protocol: TCP
-      name: ignition-tcp 
   selector:
     app: {{ include "ignition-app.name" . }}
 ---
@@ -24,8 +23,7 @@ spec:
   type: NodePort
   ports:
     - port: {{ .Values.postgresql.service.port }}
+      targetPort: {{ .Values.postgresql.port }}
       nodePort: {{ .Values.postgresql.service.nodePort }}
-      protocol: TCP
-      name: ignition-db
   selector:
     app: {{ include "postgresql.name" . }}
