@@ -1,8 +1,10 @@
 replicaCount: 3
-fullnameOverride: "ignition-app"
-namespace: ignition-namespace
+#fullnameOverride: "ignition-app"
+namespace: ignition-ns
 
 ignition:
+  nameOverride: "ignition"
+  fullnameOverride: "ignition-app"
   labels:
     app: ignition
   tier: frontend
@@ -27,6 +29,8 @@ ignition:
     TZ: "America/Edmonton"
 
 postgresql:
+  nameOverride: "postgresql"
+  fullnameOverride: "postgresql-db"
   labels:
     app: db
   tier: backend
