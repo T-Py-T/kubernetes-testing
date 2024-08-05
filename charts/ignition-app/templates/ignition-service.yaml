@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ignition-app.fullname" . }}
+  labels:
+    {{- include "ignition-app.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - name: ignition
+      port: {{ .Values.ignition.service.port }}
+      targetPort: {{ .Values.ignition.port }}
+      nodePort: {{ .Values.ignition.service.nodePort }}
+  selector:
+    app: {{ include "ignition-app.name" . }}
