@@ -30,7 +30,7 @@ spec:
               memory: {{ .Values.ignition.resources.limits.memory }}
               cpu: {{ .Values.ignition.resources.limits.cpu }}
         - name: postgresql
-          image: {{ .Values.postgresql.image }}
+          image: "{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}"
           env:
             {{- range $key, $value := .Values.postgresql.env }}
             - name: {{ $key }}
