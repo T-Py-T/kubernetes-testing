@@ -8,17 +8,17 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: ignition.example.com
+    - host: ignition
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: ignition-app
+                name: ignition
                 port:
                   number: 8088
-    - host: postgres.example.com
+    - host: postgresql
       http:
         paths:
           - path: /
